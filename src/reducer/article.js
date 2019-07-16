@@ -1,10 +1,10 @@
-import { GET_DATA } from '../constant';
+import { GET_ARTICLE } from '../constant';
 
 export default (state = { items: [] }, action) => {
   switch (action.type) {
-    case GET_DATA.REQUEST:
+    case GET_ARTICLE.REQUEST:
       return state;
-    case GET_DATA.SUCCESS: {
+    case GET_ARTICLE.SUCCESS: {
       const { payload = [] } = action;
       return {
         items: [...state.items, ...payload]

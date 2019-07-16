@@ -11,16 +11,16 @@ const ROUTE_CONFIG = [
     exact: true
   },
   {
-    path: '/about',
-    componentPath: `${BASE_PATH}/about`
+    path: '/article',
+    componentPath: `${BASE_PATH}/article`
   },
   {
     path: '/contact',
     componentPath: `${BASE_PATH}/contact`
   },
   {
-    path: '/article',
-    componentPath: `${BASE_PATH}/article`,
+    path: '/news',
+    componentPath: `${BASE_PATH}/news`,
   },
   {
     componentPath: `${BASE_PATH}/noMatch`,

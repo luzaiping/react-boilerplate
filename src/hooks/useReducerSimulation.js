@@ -1,3 +1,6 @@
+/**
+ * react useReducer 的一种实现方式
+ */
 import { useState } from 'react';
 
 export default function useReducer(reducer, initState) {

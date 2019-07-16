@@ -1,40 +1,26 @@
-import React, { useState, useCallback } from 'react';
-import useFetchApi from '../../hooks/useFetchApi';
-
-const BASE_URL = 'http://hn.algolia.com/api/v1/search?query=';
+import React, { useCallback } from 'react';
+import useShallowEqualSelector from '../../hooks/useShallowEqualSelector';
+import articleActionCreator from '../../actionCreator/articleAction';
+import useActions from '../../hooks/useActions';
 
 const Article = () => {
-  const [query, setQuery] = useState('redux');
-  const [result = {}, setUrl] = useFetchApi({ hits: [] }, `${BASE_URL}redux`);
-  const { data, isLoading, hasError } = result;
+  const items = useShallowEqualSelector(state => state.users.items);
+  const { getArticleActionCreator } = useActions(articleActionCreator);
 
-  const submitFn = useCallback((event) => {
-    event.preventDefault();
-    setUrl(`${BASE_URL}${query}`);
-  }, [setUrl, query]);
+  const getData = useCallback((query) => {
+    getArticleActionCreator({ query });
+  }, [getArticleActionCreator]);
 
-  return (
-    <>
-      <form onSubmit={submitFn}>
-        <input type="text" value={query} onChange={event => setQuery(event.target.value)} />
-        <button type="submit">Search</button>
-      </form>
-      { hasError && <div>Something went wrong...</div> }
-      {
-        isLoading ? (
-          <div>Loading...</div>
-        ) : (
-          <ul>
-            { data.hits.map(item => (
-              <li key={item.objectID}>
-                <a href={item.url}>{item.title}</a>
-              </li>
-            ))}
-          </ul>
-        )
-      }
-    </>
-  );
+  const displayData = () => {
+    const elems = items.map(({ title, author, objectID }) => (
+      <li key={objectID}>
+        {title} - {author}
+      </li>
+    ));
+    return <ul>{elems}</ul>;
+  };
+
+  return items.length ? displayData() : <div onClick={() => getData('react')}>getData</div>;
 };
 
 export default React.memo(Article);
