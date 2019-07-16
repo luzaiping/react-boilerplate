@@ -1,0 +1,13 @@
+.title {
+  composes: title from '../../../css/mixins.css'; 
+}
+
+.figure {
+  composes: figure from '../../../css/mixins.css';
+  margin: 40px 0;
+}
+
+.main {
+  composes: paragraph from '../../../css/mixins.css';
+  color: red;
+}

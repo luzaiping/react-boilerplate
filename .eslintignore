@@ -1,0 +1,5 @@
+node_modules
+dist/
+public/
+config/env.js
+scripts/start.js
