@@ -1,4 +1,4 @@
-import { createActionCreator } from './actionUtil';
+import { createActionCreator } from '../utils/actionUtil';
 import request from '../service/baseService';
 import { GET_ARTICLE, PAYLOAD } from '../constant';
 

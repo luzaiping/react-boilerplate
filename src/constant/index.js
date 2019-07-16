@@ -1,4 +1,4 @@
-import { createAsyncActionType } from '../actionCreator/actionUtil';
+import { createAsyncActionType } from '../utils/actionUtil';
 
 export const PAYLOAD = 'payload';
 
