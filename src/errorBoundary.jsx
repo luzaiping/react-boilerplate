@@ -1,6 +1,11 @@
 import { React } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * 渣渣，Hook 目前还不支持 componentDidCatch 和 getSnapshotBeforeUpdate
+ * 因此将 ErrorBoundary 用在 Hook， Hook 出现错误，错误是不会被 catch
+ */
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -9,6 +14,7 @@ class ErrorBoundary extends React.Component {
 
   static getDerivedStateFromError() {
     // Update state so the next render will show the fallback UI
+    // here just return partical state object
     return { hasError: true };
   }
 
