@@ -11,11 +11,13 @@ import ErrorBoundary from './errorBoundary';
 const store = configureStore(rootReducer);
 
 const App = () => (
-  <Provider store={store}>
-    <ErrorBoundary>
-      <Router />
-    </ErrorBoundary>
-  </Provider>
+  <React.StrictMode>
+    <Provider store={store}>
+      <ErrorBoundary>
+        <Router />
+      </ErrorBoundary>
+    </Provider>
+  </React.StrictMode>
 );
 
 /* eslint-disable */
