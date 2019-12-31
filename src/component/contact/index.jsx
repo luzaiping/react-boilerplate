@@ -19,8 +19,12 @@ const Contact = () => {
   return (
     <div>
       <p className={styles.title}> You clicked {count} times </p>
-      <button onClick={incrementFn} type="button"> Increment </button>
-      <button onClick={decrementFn} type="button"> Decrement </button>
+      <button onClick={incrementFn} type="button">
+        Increment
+      </button>
+      <button onClick={decrementFn} type="button">
+        Decrement
+      </button>
     </div>
   );
 };

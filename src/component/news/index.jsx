@@ -8,31 +8,36 @@ const News = () => {
   const [result = {}, setUrl] = useFetchApi({ hits: [] }, `${BASE_URL}redux`);
   const { data, isLoading, hasError } = result;
 
-  const submitFn = useCallback((event) => {
-    event.preventDefault();
-    setUrl(`${BASE_URL}${query}`);
-  }, [setUrl, query]);
+  const submitFn = useCallback(
+    event => {
+      event.preventDefault();
+      setUrl(`${BASE_URL}${query}`);
+    },
+    [setUrl, query]
+  );
 
   return (
     <>
       <form onSubmit={submitFn}>
-        <input type="text" value={query} onChange={event => setQuery(event.target.value)} />
+        <input
+          type="text"
+          value={query}
+          onChange={event => setQuery(event.target.value)}
+        />
         <button type="submit">Search</button>
       </form>
-      { hasError && <div>Something went wrong...</div> }
-      {
-        isLoading ? (
-          <div>Loading...</div>
-        ) : (
-          <ul>
-            { data.hits.map(item => (
-              <li key={item.objectID}>
-                <a href={item.url}>{item.title}</a>
-              </li>
-            ))}
-          </ul>
-        )
-      }
+      {hasError && <div>Something went wrong...</div>}
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <ul>
+          {data.hits.map(item => (
+            <li key={item.objectID}>
+              <a href={item.url}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };

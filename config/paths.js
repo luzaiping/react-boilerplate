@@ -1,5 +1,3 @@
-
-
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
@@ -15,7 +13,7 @@ const moduleFileExtensions = [
   'tsx',
   'json',
   'web.jsx',
-  'jsx',
+  'jsx'
 ];
 
 const getPaths = ({ publicUrl, outputPath }) => {
@@ -30,13 +28,15 @@ const getPaths = ({ publicUrl, outputPath }) => {
     const hasSlash = inputPath.endsWith('/');
     if (hasSlash && !needsSlash) {
       return inputPath.substr(0, inputPath.length - 1);
-    } if (!hasSlash && needsSlash) {
+    }
+    if (!hasSlash && needsSlash) {
       return `${inputPath}/`;
     }
     return inputPath;
   }
 
-  const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage;
+  const getPublicUrl = appPackageJson =>
+    envPublicUrl || require(appPackageJson).homepage;
 
   // We use `PUBLIC_URL` environment variable or "homepage" field to infer
   // "public path" at which the app is served.
@@ -46,13 +46,16 @@ const getPaths = ({ publicUrl, outputPath }) => {
   // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
   function getServedPath(appPackageJson) {
     const publicUrlVal = getPublicUrl(appPackageJson);
-    const servedUrl = envPublicUrl || (publicUrlVal ? url.parse(publicUrlVal).pathname : '/');
+    const servedUrl =
+      envPublicUrl || (publicUrlVal ? url.parse(publicUrlVal).pathname : '/');
     return ensureSlash(servedUrl, true);
   }
 
   // Resolve file paths in the same order as webpack
   const resolveModule = (resolveFn, filePath) => {
-    const extension = moduleFileExtensions.find(ext => fs.existsSync(resolveFn(`${filePath}.${ext}`)));
+    const extension = moduleFileExtensions.find(ext =>
+      fs.existsSync(resolveFn(`${filePath}.${ext}`))
+    );
 
     if (extension) {
       return resolveFn(`${filePath}.${extension}`);
@@ -78,11 +81,11 @@ const getPaths = ({ publicUrl, outputPath }) => {
     proxySetup: resolveApp('src/setupProxy.js'),
     appNodeModules: resolveApp('node_modules'),
     publicUrl: getPublicUrl(resolveApp('package.json')),
-    servedPath: getServedPath(resolveApp('package.json')),
+    servedPath: getServedPath(resolveApp('package.json'))
   };
 };
 
 module.exports = {
   moduleFileExtensions,
-  getPaths,
+  getPaths
 };

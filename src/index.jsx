@@ -6,16 +6,15 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import Router from './router';
 import rootReducer from './reducer';
-import ErrorBoundary from './errorBoundary';
 
 const store = configureStore(rootReducer);
 
 const App = () => (
   <React.StrictMode>
     <Provider store={store}>
-      <ErrorBoundary>
-        <Router />
-      </ErrorBoundary>
+      {/* <ErrorBoundary> */}
+      <Router />
+      {/* </ErrorBoundary> */}
     </Provider>
   </React.StrictMode>
 );

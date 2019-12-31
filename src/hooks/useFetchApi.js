@@ -46,14 +46,17 @@ const useFetchApi = (initData, initUrl) => {
         dispatch({ type: ACTION_TYPE.FETCH_REQUEST });
         const result = await axios(url);
         // unmount 就不对状态进行修改
-        if (!didCancel) dispatch({ type: ACTION_TYPE.FETCH_SUCCESS, payload: result.data });
+        if (!didCancel)
+          dispatch({ type: ACTION_TYPE.FETCH_SUCCESS, payload: result.data });
       } catch (e) {
         if (!didCancel) dispatch({ type: ACTION_TYPE.FETCH_FAILURE }); // unmount 不对状态进行修改
       }
     };
     fetchData();
 
-    return () => { didCancel = true; }; // didCancel 用于标识 component 是否 unmount
+    return () => {
+      didCancel = true;
+    }; // didCancel 用于标识 component 是否 unmount
   }, [url]);
 
   return [state, setUrl];

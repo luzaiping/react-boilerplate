@@ -20,26 +20,32 @@ const ROUTE_CONFIG = [
   },
   {
     path: '/news',
-    componentPath: `${BASE_PATH}/news`,
+    componentPath: `${BASE_PATH}/news`
   },
   {
-    componentPath: `${BASE_PATH}/noMatch`,
+    componentPath: `${BASE_PATH}/noMatch`
   }
 ];
 
-const getRouteItems = () => (
+const getRouteItems = () =>
   ROUTE_CONFIG.map(({ path, componentPath, exact = false }) => {
     // const loadComponent = lazy(()=> import(/*webpackChunkName:${someName}"*/`${componentPath}`))
     const loadComponent = lazy(() => import(`${componentPath}`));
-    return <Route exact={exact} path={path} component={loadComponent} key={path || '/noMatch'} />;
-  })
-);
+    return (
+      <Route
+        exact={exact}
+        path={path}
+        component={loadComponent}
+        key={path || '/noMatch'}
+      />
+    );
+  });
 
 const Router = () => (
   <BrowserRouter>
     <Nav />
     <Suspense fallback={<Loading />}>
-      <Switch> { getRouteItems() } </Switch>
+      <Switch> {getRouteItems()} </Switch>
     </Suspense>
   </BrowserRouter>
 );

@@ -13,7 +13,11 @@ const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const {
-  appIndexJs, templateHtml, publicUrl, appBuild, appPublic,
+  appIndexJs,
+  templateHtml,
+  publicUrl,
+  appBuild,
+  appPublic
 } = require('./config');
 // const postcssNormalize = require('postcss-normalize');
 
@@ -23,8 +27,12 @@ const baseDir = path.resolve('./');
 
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
-const outputFileName = isProductionEnv ? '[name].[chunkhash:8]' : '[name].[hash:8]';
-const outputChunkFileName = isProductionEnv ? '[name].[contenthash:8].chunk' : '[name].chunk';
+const outputFileName = isProductionEnv
+  ? '[name].[chunkhash:8]'
+  : '[name].[hash:8]';
+const outputChunkFileName = isProductionEnv
+  ? '[name].[contenthash:8].chunk'
+  : '[name].chunk';
 
 module.exports = {
   mode: isDevelopmentEnv ? 'development' : 'production',
@@ -33,21 +41,22 @@ module.exports = {
     app: [
       'react-hot-loader/patch', // 支持react 热加载
       appIndexJs,
-      isDevelopmentEnv && 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    ].filter(Boolean),
+      isDevelopmentEnv &&
+        'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
+    ].filter(Boolean)
   },
   devtool: !!isDevelopmentEnv && 'eval-source-map',
   output: {
     filename: `${outputFileName}.js`,
     chunkFilename: `${outputChunkFileName}.js`,
     path: path.resolve(baseDir, 'dist'),
-    publicPath: '/',
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      'react-dom': isDevelopmentEnv ? '@hot-loader/react-dom' : 'react-dom',
-    },
+      'react-dom': isDevelopmentEnv ? '@hot-loader/react-dom' : 'react-dom'
+    }
   },
   module: {
     rules: [
@@ -67,8 +76,8 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
-        },
+          loader: 'babel-loader'
+        }
       },
       {
         test: /\.css$/,
@@ -79,11 +88,11 @@ module.exports = {
             loader: require.resolve('css-loader'),
             options: {
               modules: {
-                localIdentName: '[name]__[local]___[hash:base64:5]', // css module 类名的格式 name(文件名称) local:类名 后面那串是唯一的识别码
+                localIdentName: '[name]__[local]___[hash:base64:5]' // css module 类名的格式 name(文件名称) local:类名 后面那串是唯一的识别码
               },
               sourceMap: isDevelopmentEnv,
-              importLoaders: 1,
-            },
+              importLoaders: 1
+            }
           },
           {
             loader: require.resolve('postcss-loader'),
@@ -99,13 +108,13 @@ module.exports = {
                   fontViewportUnit: 'vw',
                   selectorBlackList: [],
                   minPixelValue: 1,
-                  mediaQuery: true,
+                  mediaQuery: true
                   // replace: true,
                   // exclude: [],
                   // landscape: false,
                   // landscapeUnit: 'vw',
                   // landscapeWidth: 568
-                }),
+                })
                 // require('postcss-modules-values')
                 // require('postcss-import'),
                 /* require('postcss-preset-env')({
@@ -116,10 +125,10 @@ module.exports = {
                 }),
                 postcssNormalize() */
               ],
-              sourceMap: isProductionEnv && shouldUseSourceMap,
-            },
-          },
-        ].filter(Boolean),
+              sourceMap: isProductionEnv && shouldUseSourceMap
+            }
+          }
+        ].filter(Boolean)
       },
       {
         test: /\.(png|svg|jpg|gif)$/, // 对图片的处理
@@ -128,16 +137,16 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8192,
-              name: 'images/[hash].[ext]',
-            },
+              name: 'images/[hash].[ext]'
+            }
           },
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: isProductionEnv,
-            },
-          },
-        ],
+              bypassOnDebug: isProductionEnv
+            }
+          }
+        ]
       },
       {
         test: /\.(woff|woff2|[ot]tf|eot|svg)(\?t=[0-9]+(#\w+)?)?$/,
@@ -146,18 +155,18 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 51200, // 50K
-              name: 'fonts/[hash].[ext]',
-            },
+              name: 'fonts/[hash].[ext]'
+            }
           },
           {
             loader: 'image-webpack-loader',
             options: {
-              bypassOnDebug: isProductionEnv,
-            },
-          },
-        ],
-      },
-    ],
+              bypassOnDebug: isProductionEnv
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -167,11 +176,11 @@ module.exports = {
     // 实际部署要去除这个 plugin
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
-      openAnalyzer: false,
+      openAnalyzer: false
     }),
     new MiniCssExtractPlugin({
       filename: `${outputFileName}.css`,
-      chunkFilename: `${outputChunkFileName}.css`,
+      chunkFilename: `${outputChunkFileName}.css`
     }),
     new HtmlWebpackPlugin({
       title: 'React Demo',
@@ -187,26 +196,29 @@ module.exports = {
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true,
-      },
+        minifyURLs: true
+      }
     }),
     new CleanWebpackPlugin(),
 
     isProductionEnv && new webpack.HashedModuleIdsPlugin(),
-    isProductionEnv && new CopyPlugin([{ from: appPublic, to: appBuild, ignore: [templateHtml] }]),
-    isProductionEnv
-      && new UglifyJSPlugin({
+    isProductionEnv &&
+      new CopyPlugin([
+        { from: appPublic, to: appBuild, ignore: [templateHtml] }
+      ]),
+    isProductionEnv &&
+      new UglifyJSPlugin({
         sourceMap: false,
         uglifyOptions: {
           parallel: true,
           output: {
             comments: false,
-            beautify: false,
-          },
-        },
+            beautify: false
+          }
+        }
       }),
     isDevelopmentEnv && new webpack.HotModuleReplacementPlugin(),
-    isDevelopmentEnv && new OpenBrowserPlugin({ url: `http://${publicUrl}` }),
+    isDevelopmentEnv && new OpenBrowserPlugin({ url: `http://${publicUrl}` })
   ].filter(Boolean),
   optimization: {
     minimize: isProductionEnv,
@@ -218,47 +230,47 @@ module.exports = {
             ecma: 5,
             warnings: false,
             comparisons: false,
-            inline: 2,
+            inline: 2
           },
           mangle: {
-            safari10: true,
+            safari10: true
           },
           output: {
             ecma: 5,
             comments: false,
-            ascii_only: true,
-          },
+            ascii_only: true
+          }
         },
         parallel: !isWsl,
         cache: true,
-        sourceMap: false,
+        sourceMap: false
       }),
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           parser: safePostCssParser,
           map: !!shouldUseSourceMap && {
             inline: false,
-            annotation: true,
-          },
-        },
-      }),
+            annotation: true
+          }
+        }
+      })
     ],
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all',
-        },
-      },
+          chunks: 'all'
+        }
+      }
     },
-    runtimeChunk: 'single',
+    runtimeChunk: 'single'
   },
   node: {
     dgram: 'empty',
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
-    child_process: 'empty',
-  },
+    child_process: 'empty'
+  }
 };

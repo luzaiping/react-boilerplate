@@ -5,7 +5,10 @@ import counterActionCreator from '../../actionCreator/counterAction';
 const Home = () => {
   const count = useSelector(state => state.counter.count);
   const dispatch = useDispatch();
-  const { incrementActionCreator, decrementActionCreator } = counterActionCreator;
+  const {
+    incrementActionCreator,
+    decrementActionCreator
+  } = counterActionCreator;
 
   const incrementFn = useCallback(() => {
     dispatch(incrementActionCreator());
@@ -18,8 +21,12 @@ const Home = () => {
   return (
     <div>
       <div> counter: {count} </div>
-      <button type="button" onClick={incrementFn}>increment</button>
-      <button type="button" onClick={decrementFn}>decrement</button>
+      <button type="button" onClick={incrementFn}>
+        increment
+      </button>
+      <button type="button" onClick={decrementFn}>
+        decrement
+      </button>
     </div>
   );
 };

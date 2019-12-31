@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Loading = (props) => {
+const Loading = props => {
   const { error, pastDelay } = props;
   if (error) {
     return <p>网络异常，请重试</p>;

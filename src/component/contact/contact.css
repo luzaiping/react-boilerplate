@@ -1,5 +1,5 @@
 .title {
-  composes: title from '../../../css/mixins.css'; 
+  composes: title from '../../../css/mixins.css';
 }
 
 .figure {

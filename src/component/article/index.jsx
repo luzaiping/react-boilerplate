@@ -6,10 +6,12 @@ import useActions from '../../hooks/useActions';
 const Article = () => {
   const items = useShallowEqualSelector(state => state.users.items);
   const { getArticleActionCreator } = useActions(articleActionCreator);
-
-  const getData = useCallback((query) => {
-    getArticleActionCreator({ query });
-  }, [getArticleActionCreator]);
+  const getData = useCallback(
+    query => {
+      getArticleActionCreator({ query });
+    },
+    [getArticleActionCreator]
+  );
 
   const displayData = () => {
     const elems = items.map(({ title, author, objectID }) => (
@@ -20,7 +22,11 @@ const Article = () => {
     return <ul>{elems}</ul>;
   };
 
-  return items.length ? displayData() : <div onClick={() => getData('react')}>getData</div>;
+  return items.length > 0 ? (
+    displayData()
+  ) : (
+    <div onClick={() => getData('react')}>getData</div>
+  );
 };
 
 export default React.memo(Article);

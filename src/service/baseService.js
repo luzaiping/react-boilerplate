@@ -10,10 +10,13 @@ export default function request(url) {
     }
   };
 
-  return axios.get(url, setting)
-    .then((response) => {
+  return axios
+    .get(url, setting)
+    .then(response => {
       const { data, status } = response;
-      return status === 200 ? data : Promise.reject(Error('res status is not ok.'));
+      return status === 200
+        ? data
+        : Promise.reject(Error('res status is not ok.'));
     })
     .catch(e => Promise.reject(e));
 }

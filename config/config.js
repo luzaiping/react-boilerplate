@@ -4,7 +4,9 @@ process.env.NODE_CONFIG_DIR = `${__dirname}/env/`;
 const config = require('config');
 const paths = require('./paths');
 
-console.log(`config.js 读到的 NODE_ENV 参数: ${config.util.getEnv('NODE_ENV')}`);
+console.log(
+  `config.js 读到的 NODE_ENV 参数: ${config.util.getEnv('NODE_ENV')}`
+);
 console.log(`对应的config: ${JSON.stringify(config)}`);
 
 const pathsObj = paths.getPaths(config);
