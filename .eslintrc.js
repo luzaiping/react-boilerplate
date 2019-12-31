@@ -1,6 +1,6 @@
 module.exports = {
-  extends: ['airbnb', 'prettier', 'prettier/react'],
-  plugins: ['prettier', 'react', 'react-hooks'],
+  extends: ['airbnb', 'plugin:prettier/recommended', 'prettier/react'],
+  plugins: ['react', 'react-hooks'],
   env: {
     browser: true,
     commonjs: true,
@@ -17,7 +17,6 @@ module.exports = {
     }
   },
   rules: {
-    'prettier/prettier': 'error',
     quotes: ['error', 'single', { avoidEscape: true }],
     'comma-dangle': 0,
     'no-console': 0, // 部署前要打开这个rule
