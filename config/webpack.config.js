@@ -13,7 +13,7 @@ const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const {
-  appIndexJs,
+  // appIndexJs,
   templateHtml,
   publicUrl,
   appBuild,
@@ -40,7 +40,8 @@ module.exports = {
   entry: {
     app: [
       'react-hot-loader/patch', // 支持react 热加载
-      appIndexJs,
+      // appIndexJs,
+      path.resolve(__dirname, '../src/simpleIndex'),
       isDevelopmentEnv &&
         'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'
     ].filter(Boolean)

@@ -29,15 +29,17 @@ module.exports = {
     'global-require': 0,
     'no-use-before-define': 0,
     'import/no-dynamic-require': 0,
+    'import/prefer-default-export': 0,
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
     'react/jsx-one-expression-per-line': 0,
+    'react/jsx-filename-extension': 0,
     'react/button-has-type': 1,
     'react/forbid-prop-types': 0,
     'react/require-default-props': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-static-element-interactions': 0,
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react-hooks/exhaustive-deps': 'warn',
   }
 };
