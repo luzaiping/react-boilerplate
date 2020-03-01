@@ -1,6 +1,6 @@
 # React boilerplate
 
-react + redux + react-redux + react-router + webpack4 + postcss + cssModule + babel + eslint + lint-staged + husky 
+react + redux + react-redux + react-router + webpack4 + postcss + cssModule + babel + eslint + lint-staged + husky + jest + eslint + prettier + editorconfig
 
 特性：
 
