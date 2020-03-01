@@ -13,10 +13,10 @@ const { appBuild, port, appHtmlName } = require('../config/config');
 process.env.NODE_ENV = 'production';
 process.env.BABEL_ENV = 'production';
 
-/* eslint-disable */
+// eslint-disable-next-line import/order
 const webpack = require('webpack');
 const webpackConfig = require('../config/webpack.config');
-/* eslint-enable */
+
 const compiler = webpack(webpackConfig);
 
 function build() {

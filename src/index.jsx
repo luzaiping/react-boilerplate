@@ -19,8 +19,6 @@ const App = () => (
   </React.StrictMode>
 );
 
-/* eslint-disable */
 const Index = IS_DEVELOPMENT ? hot(App) : App;
-/* eslint-enable */
 
 ReactDOM.render(<Index />, document.getElementById('root'));
