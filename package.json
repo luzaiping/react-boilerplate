@@ -9,7 +9,7 @@
     "startProduction": "set RUN_PROD=true&&npm run build",
     "lint": "eslint {src,config,scripts}/**/*.{js,jsx}",
     "test": "jest --config ./jest.config.json",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "yarn test -- --watch"
   },
   "keywords": [],
   "author": "lzp",
