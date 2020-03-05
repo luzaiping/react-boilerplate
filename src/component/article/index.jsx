@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import useShallowEqualSelector from '../../hooks/useShallowEqualSelector';
-import articleActionCreator from '../../actionCreator/articleAction';
+import articleActions from '../../actions/ArticleActions';
 import useActions from '../../hooks/useActions';
 
 const Article = () => {
   const items = useShallowEqualSelector(state => state.users.items);
-  const { getArticleActionCreator } = useActions(articleActionCreator);
+  const { getArticleActionCreator } = useActions(articleActions);
   const getData = useCallback(
     query => {
       getArticleActionCreator({ query });

@@ -1,14 +1,11 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import counterActionCreator from '../../actionCreator/counterAction';
+import counterActions from '../../actions/CounterActions';
 
 const Home = () => {
   const count = useSelector(state => state.counter.count);
   const dispatch = useDispatch();
-  const {
-    incrementActionCreator,
-    decrementActionCreator
-  } = counterActionCreator;
+  const { incrementActionCreator, decrementActionCreator } = counterActions;
 
   const incrementFn = useCallback(() => {
     dispatch(incrementActionCreator());
