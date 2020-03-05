@@ -1,27 +1,19 @@
-import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import useActions from '../../hooks/useActions';
 import counterActions from '../../actions/CounterActions';
 
 const Home = () => {
   const count = useSelector(state => state.counter.count);
-  const dispatch = useDispatch();
-  const { incrementActionCreator, decrementActionCreator } = counterActions;
-
-  const incrementFn = useCallback(() => {
-    dispatch(incrementActionCreator());
-  }, [dispatch, incrementActionCreator]);
-
-  const decrementFn = useCallback(() => {
-    dispatch(decrementActionCreator());
-  }, [dispatch, decrementActionCreator]);
+  const { incrementCounter, decrementCounter } = useActions(counterActions);
 
   return (
     <div>
       <div> counter: {count} </div>
-      <button type="button" onClick={incrementFn}>
+      <button type="button" onClick={incrementCounter}>
         increment
       </button>
-      <button type="button" onClick={decrementFn}>
+      <button type="button" onClick={decrementCounter}>
         decrement
       </button>
     </div>

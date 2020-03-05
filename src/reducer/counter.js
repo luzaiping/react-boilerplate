@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from '../constant';
+import { INCREMENT, DECREMENT } from '../constant/ActionTypes';
 
 export default (state = { count: 0 }, action) => {
   switch (action.type) {

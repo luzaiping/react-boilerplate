@@ -1,10 +1,10 @@
 import { createActionCreator } from '../utils/actionUtil';
-import { INCREMENT, DECREMENT } from '../constant';
+import { INCREMENT, DECREMENT } from '../constant/ActionTypes';
 
-const incrementActionCreator = createActionCreator(INCREMENT);
-const decrementActionCreator = createActionCreator(DECREMENT);
+const incrementCounter = createActionCreator(INCREMENT);
+const decrementCounter = createActionCreator(DECREMENT);
 
 export default {
-  incrementActionCreator,
-  decrementActionCreator
+  incrementCounter,
+  decrementCounter
 };

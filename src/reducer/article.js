@@ -1,4 +1,4 @@
-import { GET_ARTICLE } from '../constant';
+import { GET_ARTICLE } from '../constant/ActionTypes';
 
 export default (state = { items: [] }, action) => {
   switch (action.type) {

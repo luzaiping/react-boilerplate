@@ -1,6 +1,7 @@
 import { createActionCreator } from '../utils/actionUtil';
 import request from '../service/baseService';
-import { GET_ARTICLE, PAYLOAD } from '../constant';
+import { PAYLOAD } from '../constant';
+import { GET_ARTICLE } from '../constant/ActionTypes';
 
 const getDataRequestActionCreator = createActionCreator(
   GET_ARTICLE.REQUEST,
