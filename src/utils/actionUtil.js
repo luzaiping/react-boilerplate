@@ -5,17 +5,17 @@
  * @returns {{ type: *, ... }}
  */
 export function createActionCreator(type, ...argNames) {
-  return (...args) => {
+  return (...argValues) => {
     const action = { type };
     argNames.forEach((arg, index) => {
-      action[argNames[index]] = args[index];
+      action[argNames[index]] = argValues[index];
     });
     return action;
   };
 }
 
 /**
- * 创建actionConstant对象，包含REQUEST，SUCCESS，FAILURE
+ * 创建一个 async ActionType 对象，包含 REQUEST，SUCCESS，FAILURE
  * @param type XX
  * @returns {{REQUEST: string, SUCCESS: string, FAILURE: string}}
  */
