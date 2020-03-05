@@ -1,16 +1,17 @@
 import React, { useCallback } from 'react';
 import useShallowEqualSelector from '../../hooks/useShallowEqualSelector';
-import articleActions from '../../actions/ArticleActions';
+import * as articleActions from '../../actions/ArticleActions';
 import useActions from '../../hooks/useActions';
 
 const Article = () => {
   const items = useShallowEqualSelector(state => state.users.items);
-  const { getArticleActionCreator } = useActions(articleActions);
+  const { getArticleAsync } = useActions(articleActions);
+
   const getData = useCallback(
     query => {
-      getArticleActionCreator({ query });
+      getArticleAsync({ query });
     },
-    [getArticleActionCreator]
+    [getArticleAsync]
   );
 
   const displayData = () => {
@@ -25,7 +26,7 @@ const Article = () => {
   return items.length > 0 ? (
     displayData()
   ) : (
-    <div onClick={() => getData('react')}>getData</div>
+    <div onClick={() => getData('react')}>click to get Data</div>
   );
 };
 

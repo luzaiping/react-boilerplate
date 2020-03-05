@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import useActions from '../../hooks/useActions';
-import counterActions from '../../actions/CounterActions';
+import * as counterActions from '../../actions/CounterActions';
 
 const Home = () => {
   const count = useSelector(state => state.counter.count);
